@@ -1,0 +1,32 @@
+<div class="hero-unit">
+  <form id="todo-form" class="form-horizontal" action="/todos/<%= params.id %>?_method=PUT" method="POST">
+    <fieldset>
+      <legend>Update this Todo</legend>
+      <% if(params.errors) { %>
+      <div class="control-group">
+        <ul>
+        <% for(var err in params.errors) { %>
+          <li><%= params.errors[err]; %></li>
+        <% } %>
+        </ul>
+      </div>
+      <% } %>
+      <div class="control-group">
+        <label for="title" class="control-label">title</label>
+        <div class="controls">
+          <%- contentTag('input', todo.title, {type:'text', class:'span6', name:'title'}) %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="status" class="control-label">status</label>
+        <div class="controls">
+          <%- contentTag('input', todo.status, {type:'text', class:'span6', name:'status'}) %>
+        </div>
+      </div>
+    <div class="form-actions">
+      <%- contentTag('input', 'Save', {type: 'submit', class: 'btn btn-primary'}) %>
+      <%- contentTag('button', 'Remove', {type: 'submit', formaction: '/todos/' + params.id + '?_method=DELETE', formmethod: 'POST', class: 'btn btn-danger'}) %>
+    </div>
+    </fieldset>
+  </form>
+</div>
